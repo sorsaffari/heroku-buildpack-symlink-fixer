@@ -3,6 +3,8 @@
 set -xe
 ls /
 ls
+ls /app/
+pwd
 mkdir /app/_data/client_api/
 ln -s /app/docs/_03-client-api/references/answer.yml /app/_data/client_api/
 
