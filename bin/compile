@@ -9,10 +9,10 @@ export REALPATH="$(dirname "$0")/realpath"
 export BUILD_DIR="$("$REALPATH" "$1")"
 export RUNTIME_DIR="/app/"
 
-originals=$(find $BUILDPACK_DIR/docs/ -name '*.yml')
+originals=$(find $BUILD_DIR/docs/ -name '*.yml')
 
 for original in $originals; do
-    symlink=${original#'$BUILDPACK_DIR/docs/'}; # remove prefix
+    symlink=${original#"$BUILD_DIR/docs/"}; # remove prefix
     symlink=${symlink:4} # remove page number
     symlink="${symlink/references\//}" # remove /references
     symlink="${symlink//-/_}" # repalce - with _
