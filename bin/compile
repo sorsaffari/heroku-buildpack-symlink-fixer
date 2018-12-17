@@ -4,13 +4,14 @@ set -xe
 
 export REALPATH="$(dirname "$0")/realpath"
 export BUILD_DIR="$("$REALPATH" "$1")"
+export RUNTIME_DIR="/app"
 
 ls "$BUILD_DIR"
 # ls
 # ls /app/
 # pwd
 mkdir "$BUILD_DIR"/_data/client_api/
-ln -s "$BUILD_DIR"/docs/_03-client-api/references/answer.yml "$BUILD_DIR"/_data/client_api/
+ln -s "$RUNTIME_DIR"/docs/_03-client-api/references/answer.yml "$BUILD_DIR"/_data/client_api/
 
 # #!/usr/bin/env bash
 
