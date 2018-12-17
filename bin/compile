@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -xe
 
 export REALPATH="$(dirname "$0")/realpath"
 export BUILD_DIR="$("$REALPATH" "$1")"
