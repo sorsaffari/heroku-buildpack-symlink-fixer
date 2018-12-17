@@ -12,7 +12,8 @@ export RUNTIME_DIR="/app/"
 originals=$(find $BUILD_DIR/docs/ -name '*.yml')
 
 for original in $originals; do
-    symlink=${original#"$BUILD_DIR/docs/"}; # remove prefix
+    original=${original/BUILD_DIR/RUNTIME_DIR}
+    symlink=${original#"$RUNTIME_DIR/docs/"} # remove prefix
     symlink=${symlink:4} # remove page number
     symlink="${symlink//-/_}" # repalce - with _
     symlink="${symlink/references\//}" # remove /references
