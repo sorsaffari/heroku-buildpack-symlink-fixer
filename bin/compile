@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 set -xe
+ls /
+ls
 mkdir /app/_data/client_api/
 ln -s /app/docs/_03-client-api/references/answer.yml /app/_data/client_api/
 
