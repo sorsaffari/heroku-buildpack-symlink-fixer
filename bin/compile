@@ -1,17 +1,38 @@
 #!/usr/bin/env bash
 
-set -xe
+set -x
+
+ls
+pwd
 
 export REALPATH="$(dirname "$0")/realpath"
 export BUILD_DIR="$("$REALPATH" "$1")"
-export RUNTIME_DIR="/app"
+export RUNTIME_DIR="/app/"
 
-ls "$BUILD_DIR"
-# ls
-# ls /app/
-# pwd
-mkdir "$BUILD_DIR"/_data/client_api/
-ln -s "$RUNTIME_DIR"/docs/_03-client-api/references/answer.yml "$BUILD_DIR"/_data/client_api/
+originals=$(find /app/docs/ -name '*.yml')
+
+for original in $originals; do
+    symlink=${original#'/app/docs/'}; # remove prefix
+    symlink=${symlink:4} # remove page number
+    symlink="${symlink/references\//}" # remove /references
+    symlink="${symlink//-/_}" # repalce - with _
+    symlink="/$BUILD_DIR/_data/$symlink"
+    ln -s $original $symlink
+done
+# #!/usr/bin/env bash
+
+# set -xe
+
+# export REALPATH="$(dirname "$0")/realpath"
+# export BUILD_DIR="$("$REALPATH" "$1")"
+# export RUNTIME_DIR="/app"
+
+# ls "$BUILD_DIR"
+# # ls
+# # ls /app/
+# # pwd
+# mkdir "$BUILD_DIR"/_data/client_api/
+# ln -s "$RUNTIME_DIR"/docs/_03-client-api/references/answer.yml "$BUILD_DIR"/_data/client_api/
 
 # #!/usr/bin/env bash
 
