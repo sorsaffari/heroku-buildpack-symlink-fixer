@@ -14,9 +14,10 @@ originals=$(find $BUILD_DIR/docs/ -name '*.yml')
 for original in $originals; do
     symlink=${original#"$BUILD_DIR/docs/"}; # remove prefix
     symlink=${symlink:4} # remove page number
-    symlink="${symlink/references\//}" # remove /references
     symlink="${symlink//-/_}" # repalce - with _
-    symlink="/$BUILD_DIR/_data/$symlink"
+    symlink="${symlink/references\//}" # remove /references
+    symlink="$BUILD_DIR/_data/$symlink"
+    mkdir -p "$(dirname $symlink)"
     ln -s $original $symlink
 done
 # #!/usr/bin/env bash
